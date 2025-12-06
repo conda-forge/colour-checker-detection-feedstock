@@ -1,5 +1,5 @@
 {% set name = "colour-checker-detection" %}
-{% set version = "0.2.1" %}
+{% set version = "0.2.2" %}
 
 {% set python_min = "3.10" %}
 
@@ -9,13 +9,13 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/colour_checker_detection-{{ version }}.tar.gz
-  sha256: 68dd0d48aa0f4355ecd0640eee52d3b53c90b24a7d966f422f5513de1bc39e83
+  sha256: 51ca4dce5ba88d1ceeabc10a7f9e113acc5e6f42c2c629a2b5af20a3f995d920
 
 build:
   entry_points:
     - colour-checker-detection-inference = colour_checker_detection.scripts.inference:segmentation
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation 
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
@@ -44,7 +44,7 @@ test:
     - pip
 
 about:
-  home: https://github.com/colour-science/colour-checker-detection  
+  home: https://github.com/colour-science/colour-checker-detection
   summary: Colour checker detection with Python
   license: BSD-3-Clause
   license_file: LICENSE
