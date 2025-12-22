@@ -1,7 +1,7 @@
 {% set name = "colour-checker-detection" %}
-{% set version = "0.2.1" %}
+{% set version = "0.2.3" %}
 
-{% set python_min = "3.10" %}
+{% set python_min = "3.11" %}
 
 package:
   name: {{ name|lower }}
@@ -9,13 +9,13 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/colour_checker_detection-{{ version }}.tar.gz
-  sha256: 68dd0d48aa0f4355ecd0640eee52d3b53c90b24a7d966f422f5513de1bc39e83
+  sha256: 3bca3ee6c27d0f4ff3817705716fdb7023e08a2da84233de4378253cff7f053e
 
 build:
   entry_points:
     - colour-checker-detection-inference = colour_checker_detection.scripts.inference:segmentation
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation 
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
@@ -25,13 +25,16 @@ requirements:
     - pip
   run:
     - python >={{ python_min }}
-    - colour-science >=0.4.4
+    - colour-science >=0.4.5
+    - matplotlib-base
     - imageio >=2,<3
     - numpy >=1.24,<3
     - opencv >=4,<5
-    - scipy >=1.10,<2
+    - scipy >=1.13,<2
     - typing_extensions >=4,<5
     - click >=8,<9
+    - ultralytics >=8,<9
+    - scikit-learn >=1.7,<2
 
 test:
   imports:
@@ -44,7 +47,7 @@ test:
     - pip
 
 about:
-  home: https://github.com/colour-science/colour-checker-detection  
+  home: https://github.com/colour-science/colour-checker-detection
   summary: Colour checker detection with Python
   license: BSD-3-Clause
   license_file: LICENSE
